@@ -1,0 +1,191 @@
+{
+
+
+    // ============================================================
+    // 1. 基础全局设置 (状态栏的长相和位置)
+    // ============================================================
+    "output":"HDMI-A-1",
+    "layer": "top",             // 状态栏在屏幕的最顶层，不会被窗口盖住
+    "position": "top",          // 把状态栏放在屏幕的“顶部” 也可以写bottom
+    "height": 30,               // 状态栏的高度是 36 像素
+    "spacing": 4,               // 模块和模块之间的间距是 4 像素
+    "margin-top": 0,            // 状态栏距离屏幕最上方的边距 (0 表示贴顶)
+    "margin-bottom": 0,         // 状态栏距离下方的边距
+
+
+
+
+
+    // ============================================================
+    // 2. 模块布局 (决定哪些东西显示在左边、中间、右边)
+    // ============================================================
+    "modules-left": [           // 这里的模块会靠左对齐
+        "hyprland/workspaces",  // 显示 Hyprland 的工作区(桌面)图标
+        "custom/wallpaper",     // 显示我们自己定义的壁纸切换按钮
+        "network#ethernet",     // 显示有线网状态
+        "network#wifi"          // 显示无线网状态
+    ],                          
+
+    "modules-center": [         // 这里的模块会居中显示
+        "custom/notification",  // 显示通知中心的小铃铛图标
+        "clock",                // 显示时间和日期
+        "custom/screenshot"
+    ],                       
+
+    "modules-right": [          // 这里的模块会靠右对齐
+        "tray",                 // 显示系统托盘(像微信、输入法的图标)
+        "backlight",            // 显示屏幕亮度
+        "pulseaudio",           // 显示声音控制
+        "battery"               // 显示电池电量
+    ],                       
+    
+
+
+
+
+
+    // ============================================================
+    // 3. 模块详细配置 (决定每个功能具体怎么运行)
+    // ============================================================
+
+    // --- 工作区模块配置 ---
+    "hyprland/workspaces": {
+        "disable-scroll": true,  // 禁用鼠标滚轮切换工作区(防止误触)
+        "all-outputs": false,    // 如果你有多个显示器，在所有屏幕都>
+        "active-only": false,    // 保持 false 即可显示未激活但已分配的工作区
+        "on-click": "activate",  // 用鼠标点一下就跳转到该工作区
+        "format": "{icon}",      // 显示的格式：只显示图标
+        "format-icons": {        // 图标的具体定义如下：
+            "default": "",      // 没窗口的普通工作区显示空心圆
+            "active": "",       // 你当前正在看的工作区显示实心圆
+            "urgent": "󰀦",       // 有紧急消息的工作区显示警告图标
+            "persistent": ""    // 哪怕没窗口也一直显示的图标
+        }                        
+    },                           
+
+
+
+    // --- 壁纸切换模块配置 ---
+    "custom/wallpaper": {
+        "format": "󰸉 ",                                         // 按钮显示的图标
+        "on-click": "pkill -SIGUSR1 -f wallpaper_daemon.sh",    // 点一下就运>
+        "tooltip": true,                                        // 鼠标放上去显示文字提示
+        "tooltip-format": "左键：随机切换壁纸"                     // 提示的内容
+    },                                
+    
+
+
+    // --- 通知中心模块配置 ---
+    "custom/notification": {
+        "tooltip": false,                            // 关掉自带提示，因为我们要自己写
+        "format": "{icon}",                          // 只显示图标
+        "format-icons": {                            // 根据通知状态切换图标：
+            "notification": "󱅫",                     // 有新通知时显示带泡泡的图标
+            "none": "󰂚",                             // 没通知时显示普通铃铛
+            "dnd-notification": "󱏧",                 // 勿扰模式+有新消息
+            "dnd-none": "󰂛"                          // 勿扰模式+没消息
+        },                           
+        "return-type": "json",                        // 接收程序的输出格式为 JSON
+        "exec-if": "which swaync-client",             // 只有电脑里装了 swaync 才运行
+        "exec": "swaync-client -swb",                 // 实时读取通知状态的命令
+        "on-click": "swaync-client -t -sw",           // 点左键打开右侧通知栏
+        "on-click-right": "swaync-client -d -sw",     // 点右键开启/关闭勿扰模>
+        "escape": true                                // 自动处理特殊字符，防止乱码
+    },                                
+
+
+
+    // --- 时钟模块配置 ---
+    "clock": {
+        "format": "󰥔 {:%H:%M  |  %Y-%m-%d}",                        // 显示格式：图标 + 小时:分钟>
+        "tooltip-format": "<tt><small>{calendar}</small></tt>"      // 鼠标放上>
+    },       
+    
+    
+                                                           
+    // --- 截图模块 ---
+    "custom/screenshot": {
+        "format": "󰆟",
+        "on-click": "sleep 0.1 && grim -g \"$(slurp)\" - | wl-copy && noti>
+        "on-click-right": "grim - | wl-copy && notify-send '全屏截图完成' >
+        "tooltip": true,
+        "tooltip-format": "左键：区域截图\n右键：全屏截图"
+    },
+
+
+
+    // --- 系统托盘配置 ---
+    "tray": {
+        "icon-size": 18,               // 托盘里小图标的大小是 18 像素
+        "spacing": 10                  // 小图标之间的距离是 10 像素
+    },                                 
+
+
+
+    // --- 有线网络配置 ---
+    "network#ethernet": {
+        "interface": "enp7s0",                                  // 指定你的网卡名字
+        "format-ethernet": "󰈀",                                 // 连上网线显示网口图标
+        "format-disconnected": "",                              // 没插网线就彻底隐藏这个图标
+        "tooltip-format": "󰈀 网卡: {ifname}\nIP: {ipaddr}",      // 提示显示 IP>
+        "on-click": "nm-connection-editor"                      // 点击打开网络设置界面
+    },                                
+
+
+
+    // --- 无线网络配置 ---
+    "network#wifi": {
+        "interface": "wlp0s20f3",                                       // 指定你的无线网卡名字
+        "format-wifi": "󰤨 {signalStrength}%",                           // 显示信号波形图标和强度百分比
+        "format-disconnected": "󰤮",                                     // 没网显示带斜杠的 WiFi 图标
+        "tooltip-format": "󰤨 WiFi: {essid}\n信号: {signalStrength}%",    // 提示显示 WiFi 名字
+        "interval": 5                                                   // 每 5 秒钟检查一次网速/信号
+    },                                
+
+
+
+    // --- 亮度模块配置 ---
+    "backlight": {
+        "format": "{icon} {percent}%",                  // 显示格式：太阳图标 + 亮度百分比
+        "format-icons": ["󰃞", "󰃟", "󰃠"],                // 亮度从低到高的三个图标
+        "on-scroll-up": "brightnessctl set +5%",        // 滚轮向上滑增加 5% 亮度
+        "on-scroll-down": "brightnessctl set 5%-",      // 滚轮向下滑减少 5% 亮度
+        "tooltip-format": "󰃟 亮度: {percent}%"           // 悬停提示
+    },                                 
+
+
+
+    // --- 音量模块配置 ---
+    "pulseaudio": {
+        "format": "{icon} {volume}%",                   // 显示格式：喇叭图标 + 音量百分比
+        "format-bluetooth": "󰋋 {volume}% {icon}",      // 连了蓝牙耳机显示耳机图标
+        "format-muted": "󰝟",                            // 静音时显示带斜杠的喇叭
+        "format-icons": {                               // 不同音量下的图标：
+            "headphone": "󰋋",                           // 耳机图标
+            "default": ["󰕿", "󰖀", "󰕾"]                  // 音量从小到大对应的三个喇叭图标
+        },                             
+        "on-scroll-up": "pamixer -i 5",                 // 滚轮向上增加 5% 音量
+        "on-scroll-down": "pamixer -d 5",               // 滚轮向下减少 5% 音量
+        "on-click": "pamixer -t",                       // 左键点一下切换静音/恢复
+        "on-click-right": "pavucontrol",                // 右键点一下打开声音高级控制面板
+        "tooltip-format": "󰕾 设备: {desc}"               // 悬停显示当前是什么设备在出声
+    },                                 
+
+
+
+    // --- 电池模块配置 ---
+    "battery": {
+        "states": {                                                                 // 设置电池的状态：
+            "warning": 30,                                                          // 低于 30% 变黄色
+            "critical": 15                                                          // 低于 15% 变红色
+        },                             
+        "format": "{icon} {capacity}%",                                             // 显示格式：电池图标 + 电量数字
+        "format-charging": "󰢟 {capacity}%",                                         // 正在充电显示带闪电的电池
+        "format-plugged": "󰂄 {capacity}%",                                          // 充满电但插着线显示插头电池
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],    // 电量显示
+        "tooltip-format": "󰁹 剩余: {capacity}%"                                      // 悬停提示
+    }                                 
+    
+    
+    
+    }

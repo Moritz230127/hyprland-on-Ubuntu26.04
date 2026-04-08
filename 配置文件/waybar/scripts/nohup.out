@@ -1,0 +1,118 @@
+[2026-04-06 22:14:28.469] [info] Using configuration file /home/rodriguez/.config/waybar/config
+[2026-04-06 22:14:28.472] [info] Discovered appearance 'dark'
+[2026-04-06 22:14:28.482] [info] Using CSS file /home/rodriguez/.config/waybar/style.css
+[2026-04-06 22:14:28.485] [info] Hyprland IPC starting
+[2026-04-06 22:14:28.485] [info] Loading persistent workspaces from Hyprland workspace rules
+[2026-04-06 22:14:28.491] [info] Loading persistent workspaces from Hyprland workspace rules
+Plugged
+Plugged
+[2026-04-06 22:14:28.595] [warning] Requested height: 36 is less than the minimum height: 40 required by the modules
+[2026-04-06 22:14:28.595] [info] Bar configured (width: 1920, height: 40) for output: HDMI-A-1
+[2026-04-06 22:14:28.595] [warning] Requested height: 36 is less than the minimum height: 40 required by the modules
+[2026-04-06 22:14:28.595] [info] Bar configured (width: 1600, height: 40) for output: eDP-1
+[2026-04-06 22:14:28.596] [info] Bar configured (width: 1600, height: 40) for output: eDP-1
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+[2026-04-06 22:21:34.004] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2026-04-06 22:21:34.006] [info] Loading persistent workspaces from Hyprland workspace rules
+[2026-04-06 22:21:34.006] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2026-04-06 22:21:34.007] [info] Loading persistent workspaces from Hyprland workspace rules
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+Plugged
+[2026-04-06 23:02:23.228] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2026-04-06 23:02:23.231] [info] Loading persistent workspaces from Hyprland workspace rules
+[2026-04-06 23:02:23.231] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2026-04-06 23:02:23.231] [info] Loading persistent workspaces from Hyprland workspace rules
+Gdk-Message: 23:02:33.894: Error reading events from display: 连接被对方重置

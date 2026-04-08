@@ -1,0 +1,119 @@
+/*
+ * ==========================================================
+ * Waybar 样式表 (已修复悬停对比度问题)
+ * ==========================================================
+ */
+
+/* 1. 颜色变量定义 */
+@define-color bg_color #24273A;
+@define-color text_color #CAD3F5;
+@define-color accent_color #8AADF4;
+@define-color urgent_color #ED8796;
+@define-color shadow_color rgba(0, 0, 0, 0.2);
+
+/* 2. 全局基础样式 */
+* {
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", sans-serif;
+    font-size: 14px;
+    border: none;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: @text_color;
+}
+
+/* 3. 通用模块样式 */
+#workspaces,
+#clock,
+#battery,
+#network,
+#pulseaudio,
+#tray,
+#custom-wallpaper,
+#backlight,
+#custom-notification,
+#custom-screenshot {
+    background-color: @bg_color;
+    color: @text_color;
+    padding: 2px 16px;
+    margin: 6px 4px;
+    border-radius: 12px;
+    border: 1px solid rgba(110, 115, 141, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+/* 4. 统一的悬停与按动特效 */
+
+/*
+ * 🌟 统一的悬停 (Hover) 效果
+ * 采用了对比度强烈的【反转填充】风格
+ */
+#workspaces button:hover,
+#clock:hover,
+#battery:hover,
+#network:hover,
+#pulseaudio:hover,
+#custom-wallpaper:hover,
+#backlight:hover,
+#custom-notificaton:hover,
+#custom-screenshot:hover {
+    background-color: @accent_color;
+    color: @bg_color;
+}
+
+/* 统一的按动 (Active) 效果 */
+#workspaces button:active,
+#clock:active,
+#battery:active,
+#network:active,
+#pulseaudio:active,
+#custom-wallpaper:active,
+#backlight:active,
+#custom-notification:active,
+#custom-screenshot:active {
+    background-color: @accent_color;
+    color: @bg_color;
+}
+
+/* 5. 模块专属微调 (保持不变) */
+#workspaces button {
+    color: #6e738d;
+    background-color: transparent;
+    padding: 0 4px;
+}
+#workspaces button.active {
+    color: @accent_color;
+    background-color: rgba(138, 173, 244, 0.1);
+    border-radius: 8px;
+}
+#battery.warning {
+    color: #eed49f;
+}
+#battery.critical {
+    color: @urgent_color;
+    animation: blink 0.8s linear infinite alternate;
+}
+@keyframes blink {
+    to {
+        background-color: @urgent_color;
+        color: @bg_color;
+    }
+}
+/*
+ * ==========================================================
+ * 6. 提示框 (Tooltip) 样式
+ * ==========================================================
+ */
+tooltip {
+    background-color: @bg_color; /* 使用与模块一致的背景色 */
+    color: @text_color;          /* 使用与模块一致的文字颜色 */
+    border-radius: 12px;         /* 保持与模块一致的圆角 */
+    border: 1px solid rgba(110, 115, 141, 0.2); /* 保持与模块一致的边框 */
+    padding: 8px 12px;           /* 调整内边距，让文字不贴边 */
+}
+
+tooltip label {
+    color: @text_color;          /* 确保文字颜色被应用 */
+}

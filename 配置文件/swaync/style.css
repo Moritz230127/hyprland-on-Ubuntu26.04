@@ -1,0 +1,55 @@
+/* 定义 Nord 颜色变量 */
+@define-color bg_color #24273A;
+@define-color text_color #CAD3F5;
+@define-color accent_color #8AADF4;
+@define-color urgent_color #ED8796;
+@define-color hover_color rgba(138, 173, 244, 0.1);
+
+/* 全局基础 */
+* {
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 14px;
+}
+
+/* 弹出的单条通知框 */
+.notification {
+    background-color: @bg_color;
+    color: @text_color;
+    border-radius: 12px;
+    border: 1px solid rgba(110, 115, 141, 0.2);
+    margin: 8px 12px;
+    padding: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* 鼠标悬停通知框时 */
+.notification:hover {
+    background-color: @hover_color;
+    border: 1px solid @accent_color;
+}
+
+/* 紧急/严重通知 */
+.notification.critical {
+    border: 1px solid @urgent_color;
+}
+
+/* 通知标题 */
+.notification-content .summary {
+    font-size: 16px;
+    font-weight: bold;
+    color: @accent_color;
+}
+
+/* 通知正文 */
+.notification-content .body {
+    font-size: 14px;
+    color: @text_color;
+    margin-top: 6px;
+}
+
+/* 右侧边栏控制中心 (Control Center) 背景 */
+.control-center {
+    background-color: rgba(36, 39, 58, 0.95);
+    border-radius: 16px;
+    border: 1px solid rgba(110, 115, 141, 0.2);
+}
