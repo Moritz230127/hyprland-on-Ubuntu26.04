@@ -1,0 +1,1 @@
+# hyprland-on-Ubuntu26.04
